@@ -92,7 +92,7 @@
                 var tmpThisProtocol = $(location).attr('protocol');
                 var tmpThisHostName = $(location).attr('hostname');
                 $('#dvEvCrClone img').each(function () {
-                    if (!$(this).attr('src').match('http://')) {
+                    if (!$(this).attr('src').match('http') && !$(this).attr('src').match('://')) {
                         $(this).attr('src', tmpThisProtocol + '//' + tmpThisHostName + '/' + $(this).attr('src'));
                     }                    
                 });
