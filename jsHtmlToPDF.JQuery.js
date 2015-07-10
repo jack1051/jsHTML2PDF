@@ -1,6 +1,6 @@
 /*
     jsHtmlToPDF.JQuery.js
-    Version 1.0.1 (7/9/2015)
+    Version 1.0.2 (7/9/2015)
     
     Created by Luis Valle
     
@@ -87,6 +87,16 @@
                 $(this).attr('checked', 'checked');
             });
             
+            /* Try to set img src's to absolute paths so wkhtmltopdf can render them correctly */
+            if ($.trim(window.window.location.hostname) != '') {
+                var tmpThisProtocol = $(location).attr('protocol');
+                var tmpThisHostName = $(location).attr('hostname');
+                $('#dvEvCrClone img').each(function () {
+                    if (!$(this).attr('src').match('http://')) {
+                        $(this).attr('src', tmpThisProtocol + '//' + tmpThisHostName + '/' + $(this).attr('src'));
+                    }                    
+                });
+            }
             $tElm = null;
         }        
         
